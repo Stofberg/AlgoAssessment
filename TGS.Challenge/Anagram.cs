@@ -1,3 +1,6 @@
+using System;
+using System.Text.RegularExpressions;
+
 namespace TGS.Challenge
 {
   /*
@@ -24,7 +27,37 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
-        return false;
+        string word1Clean = removePunc(word1);
+        string word2Clean = removePunc(word2);
+
+        if (String.IsNullOrEmpty(word1))
+        {
+          throw new ArgumentException(nameof(word1));
+        }
+        else if (String.IsNullOrEmpty(word2))
+        {
+          throw new ArgumentException(nameof(word2));
+        }
+        else
+        {
+          if (word1Clean.Length != word2Clean.Length)
+          {
+            return false;
+          }
+
+          char[] word1CharArray = word1Clean.ToLower().ToCharArray();
+          char[] word2CharArray = word2Clean.ToLower().ToCharArray();
+
+          Array.Sort(word1CharArray);
+          Array.Sort(word2CharArray);
+
+          return string.Equals(word1CharArray, word1CharArray);
+        }
+      }
+
+      private string removePunc(string word)
+      {
+        return Regex.Replace(word, @"[\W_]", string.Empty);
       }
     }
 }
