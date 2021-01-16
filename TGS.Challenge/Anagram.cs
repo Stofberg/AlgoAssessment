@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace TGS.Challenge
@@ -52,7 +53,7 @@ namespace TGS.Challenge
           Array.Sort(word1CharArray);
           Array.Sort(word2CharArray);
 
-          return string.Equals(word1CharArray, word1CharArray);
+          return word1CharArray.SequenceEqual(word2CharArray);
         }
       }
     }
