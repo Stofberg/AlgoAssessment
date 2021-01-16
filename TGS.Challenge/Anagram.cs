@@ -27,9 +27,6 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
-        string word1Clean = removePunc(word1);
-        string word2Clean = removePunc(word2);
-
         if (String.IsNullOrEmpty(word1))
         {
           throw new ArgumentException(nameof(word1));
@@ -40,6 +37,10 @@ namespace TGS.Challenge
         }
         else
         {
+          string pattern = @"[\W_]";
+          string word1Clean = Regex.Replace(word1, pattern, string.Empty);
+          string word2Clean = Regex.Replace(word2, pattern, string.Empty);
+
           if (word1Clean.Length != word2Clean.Length)
           {
             return false;
@@ -53,11 +54,6 @@ namespace TGS.Challenge
 
           return string.Equals(word1CharArray, word1CharArray);
         }
-      }
-
-      private string removePunc(string word)
-      {
-        return Regex.Replace(word, @"[\W_]", string.Empty);
       }
     }
 }
