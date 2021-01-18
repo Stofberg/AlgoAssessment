@@ -42,18 +42,7 @@ namespace TGS.Challenge
           string word1Clean = Regex.Replace(word1, pattern, string.Empty);
           string word2Clean = Regex.Replace(word2, pattern, string.Empty);
 
-          if (word1Clean.Length != word2Clean.Length)
-          {
-            return false;
-          }
-
-          char[] word1CharArray = word1Clean.ToLower().ToCharArray();
-          char[] word2CharArray = word2Clean.ToLower().ToCharArray();
-
-          Array.Sort(word1CharArray);
-          Array.Sort(word2CharArray);
-
-          return word1CharArray.SequenceEqual(word2CharArray);
+          return word1Clean.ToLower().OrderBy(c => c).SequenceEqual(word2Clean.ToLower().OrderBy(c => c));
         }
       }
     }
