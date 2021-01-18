@@ -22,19 +22,9 @@ namespace TGS.Challenge
                 throw new ArgumentException("Input parameter is null or empty", nameof(value));
             }
 
-            string valueLowerCase = value.ToLower();
             char[] vowelsCharArray = new [] {'a', 'e', 'i', 'o', 'u'};
-            int count = 0;
-
-            foreach (char x in valueLowerCase)
-            {
-                if (vowelsCharArray.Contains(x))
-                {
-                    count++;
-                }
-            }
-
-            return count;
+            
+            return value.ToLower().ToCharArray().Where(c => vowelsCharArray.Contains(c)).Count();
         }
     }
 }
