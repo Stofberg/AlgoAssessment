@@ -24,7 +24,7 @@ namespace TGS.Challenge
 
             char[] vowelsCharArray = new [] {'a', 'e', 'i', 'o', 'u'};
             
-            return value.ToLower().ToCharArray().Where(c => vowelsCharArray.Contains(c)).Count();
+            return value.ToLower().Where(c => vowelsCharArray.Contains(c)).Count();
         }
     }
 }
