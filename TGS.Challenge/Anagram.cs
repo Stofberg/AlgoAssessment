@@ -30,11 +30,11 @@ namespace TGS.Challenge
       {
         if (String.IsNullOrEmpty(word1))
         {
-          throw new ArgumentException(nameof(word1));
+          throw new ArgumentException("Input is null or empty.", nameof(word1));
         }
         else if (String.IsNullOrEmpty(word2))
         {
-          throw new ArgumentException(nameof(word2));
+          throw new ArgumentException("Input is null or empty", nameof(word2));
         }
         else
         {
