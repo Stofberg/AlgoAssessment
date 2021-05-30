@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace TGS.Challenge
 {
@@ -16,7 +17,14 @@ namespace TGS.Challenge
     {
         public int Count(string value)
         {
-            return -1;
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Input parameter is null or empty", nameof(value));
+            }
+
+            char[] vowelsCharArray = new [] {'a', 'e', 'i', 'o', 'u'};
+            
+            return value.ToLower().Where(c => vowelsCharArray.Contains(c)).Count();
         }
     }
 }

@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
 namespace TGS.Challenge
 {
   /*
@@ -24,7 +28,22 @@ namespace TGS.Challenge
     {
       public bool AreAnagrams(string word1, string word2)
       {
-        return false;
+        if (String.IsNullOrEmpty(word1))
+        {
+          throw new ArgumentException("Input is null or empty.", nameof(word1));
+        }
+        else if (String.IsNullOrEmpty(word2))
+        {
+          throw new ArgumentException("Input is null or empty", nameof(word2));
+        }
+        else
+        {
+          string pattern = @"[\W_]";
+          string word1Clean = Regex.Replace(word1, pattern, string.Empty);
+          string word2Clean = Regex.Replace(word2, pattern, string.Empty);
+
+          return word1Clean.ToLower().OrderBy(c => c).SequenceEqual(word2Clean.ToLower().OrderBy(c => c));
+        }
       }
     }
 }
